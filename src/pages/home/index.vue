@@ -8,10 +8,17 @@
     </div>
     <!-- 轮播图 -->
     <swiper :indicator-dots="true">
-      <swiper-item v-for="item in imgList" :key="item.goods_id">
+      <swiper-item v-for="item in imgList" :key="item.image_src">
         <image :src="item.image_src" />
       </swiper-item>
     </swiper>
+    <!-- 菜单 -->
+    <div class="menu">
+      <div v-for="item in menuList" :key="item.image_src" class="menu-item">
+        <img :src="item.image_src" alt="">
+        <div>{{ item.name }}</div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -19,11 +26,13 @@ import * as resData from '../data'
 export default {
   data () {
     return {
-      imgList: []
+      imgList: [],
+      menuList: []
     }
   },
   mounted () {
     this.swiperData()
+    this.menuData()
   },
   methods: {
     swiperData () {
@@ -38,6 +47,19 @@ export default {
       //   }
       // })
       that.imgList = resData.imgList
+    },
+    menuData () {
+      // 请求后台接口，获取轮播数据
+      let that = this
+      // mpvue.request({
+      //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/catitems',
+      //   success: function (res) {
+      //     console.log(res)
+      //     let { message } = res.data
+      //     that.menuList = message
+      //   }
+      // })
+      that.menuList = resData.menuList
     }
   }
 }
@@ -50,5 +72,14 @@ export default {
 .search-input {
   background-color: #fff;
   text-align: center;
+}
+.menu {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.menu .menu-item img{
+  width: 128rpx;
+  height: 140rpx;
 }
 </style>
