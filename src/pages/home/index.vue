@@ -23,6 +23,7 @@
 </template>
 <script>
 import * as resData from '../data'
+import request from '../../utils/request'
 export default {
   data () {
     return {
@@ -35,18 +36,29 @@ export default {
     this.menuData()
   },
   methods: {
-    swiperData () {
+    // swiperData () {
+    //   // 请求后台接口，获取轮播数据
+    //   let that = this
+    //   // mpvue.request({
+    //   //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
+    //   //   success: function (res) {
+    //   //     console.log(res)
+    //   //     let { message } = res.data
+    //   //     that.imgList = message
+    //   //   }
+    //   // })
+    //   let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
+    //   request(url).then(res => {
+    //     that.imgList = res.data.imgList
+    //   })
+    //   that.imgList = resData.imgList
+    // },
+    // 或者
+    async swiperData () {
       // 请求后台接口，获取轮播数据
-      let that = this
-      // mpvue.request({
-      //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
-      //   success: function (res) {
-      //     console.log(res)
-      //     let { message } = res.data
-      //     that.imgList = message
-      //   }
-      // })
-      that.imgList = resData.imgList
+      let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
+      let res = await request(url)
+      this.imgList = res.data.imgList
     },
     menuData () {
       // 请求后台接口，获取轮播数据
@@ -78,7 +90,7 @@ export default {
   justify-content: space-around;
   text-align: center;
 }
-.menu .menu-item img{
+.menu .menu-item img {
   width: 128rpx;
   height: 140rpx;
 }
