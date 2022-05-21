@@ -8,8 +8,8 @@
     </div>
     <!-- 轮播图 -->
     <swiper :indicator-dots="true">
-      <swiper-item v-for="(item, index) in imgList" :key="index">
-        <image :src="item" />
+      <swiper-item v-for="item in imgList" :key="item.goods_id">
+        <image :src="item.image_src" />
       </swiper-item>
     </swiper>
   </div>
@@ -19,6 +19,23 @@ export default {
   data () {
     return {
       imgList: []
+    }
+  },
+  mounted () {
+    this.swiperData()
+  },
+  methods: {
+    swiperData () {
+      // 请求后台接口，获取轮播数据
+      let that = this
+      mpvue.request({
+        url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
+        success: function (res) {
+          console.log(res)
+          let { message } = res.data
+          that.imgList = message
+        }
+      })
     }
   }
 }
