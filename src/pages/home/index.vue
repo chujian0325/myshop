@@ -23,7 +23,7 @@
 </template>
 <script>
 import * as resData from '../data'
-import request from '../../utils/request'
+// import request from '../../utils/request'
 export default {
   data () {
     return {
@@ -36,33 +36,33 @@ export default {
     this.menuData()
   },
   methods: {
-    // swiperData () {
-    //   // 请求后台接口，获取轮播数据
-    //   let that = this
-    //   // mpvue.request({
-    //   //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
-    //   //   success: function (res) {
-    //   //     console.log(res)
-    //   //     let { message } = res.data
-    //   //     that.imgList = message
-    //   //   }
-    //   // })
-    //   let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
-    //   request(url).then(res => {
-    //     that.imgList = res.data.imgList
-    //   })
-    //   that.imgList = resData.imgList
-    // },
-    // 或者
-    async swiperData () {
-      // 请求后台接口，获取轮播数据
-      let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
-      let res = await request(url)
-      this.imgList = res.data.imgList
-    },
-    menuData () {
+    swiperData () {
       // 请求后台接口，获取轮播数据
       let that = this
+      // mpvue.request({
+      //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
+      //   success: function (res) {
+      //     console.log(res)
+      //     let { message } = res.data
+      //     that.imgList = message
+      //   }
+      // })
+      // let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
+      // request(url).then(res => {
+      //   that.imgList = res.data.imgList
+      // })
+      that.imgList = resData.imgList
+    },
+    // 或者
+    // async swiperData () {
+    //   // 请求后台接口，获取轮播数据
+    //   // let url = 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata'
+    //   let res = await request('home/swiperdata')
+    //   this.imgList = resData.imgList
+    // },
+    menuData () {
+      // 请求后台接口，获取轮播数据
+      // let that = this
       // mpvue.request({
       //   url: 'https://www.zhengzhicheng.cn/api/public/v1/home/catitems',
       //   success: function (res) {
@@ -71,7 +71,8 @@ export default {
       //     that.menuList = message
       //   }
       // })
-      that.menuList = resData.menuList
+      // let res = await request('home/catitems')
+      this.menuList = resData.menuList
     }
   }
 }
