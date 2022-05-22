@@ -1,11 +1,6 @@
 <template>
   <div>
-    <!-- 搜索条 -->
-    <div class="search-bar">
-      <div class="search-input">
-        <input type="text" placeholder="搜索">
-      </div>
-    </div>
+    <search-bar></search-bar>
     <!-- 轮播图 -->
     <swiper :indicator-dots="true">
       <swiper-item v-for="item in imgList" :key="item.image_src">
@@ -44,6 +39,7 @@
 </template>
 <script>
 import * as resData from '../data'
+import SearchBar from '../../components/search.vue'
 // import request from '../../utils/request'
 export default {
   data () {
@@ -53,6 +49,9 @@ export default {
       isShow: false,
       menuList: []
     }
+  },
+  components: {
+    SearchBar
   },
   mounted () {
     this.swiperData()
@@ -128,14 +127,6 @@ export default {
 }
 </script>
 <style scoped>
-.search-bar {
-  background-color: #fe2d4a;
-  padding: 20rpx;
-}
-.search-input {
-  background-color: #fff;
-  text-align: center;
-}
 .menu {
   display: flex;
   justify-content: space-around;
@@ -186,6 +177,6 @@ export default {
   align-items: center;
 }
 .toTop p {
-  font-size: 16rpx;
+  font-size: 16px;
 }
 </style>
