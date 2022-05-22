@@ -35,6 +35,11 @@
         </div>
       </div>
     </div>
+    <!-- 回到顶部 -->
+    <div class="toTop" v-if="isShow" @click="goToTop">
+      ^
+      <p>顶部</p>
+    </div>
   </div>
 </template>
 <script>
@@ -45,6 +50,7 @@ export default {
     return {
       imgList: [],
       floorList: [],
+      isShow: false,
       menuList: []
     }
   },
@@ -53,7 +59,22 @@ export default {
     this.menuData()
     this.floorData()
   },
+  onPageScroll (event) {
+    // 小程序页面生命周期：监控页面的滚动
+    // 如果滚动到指定位置就控制显示和隐藏
+    this.isShow = event.scrollTop > 50
+  },
   methods: {
+    goToTop () {
+      // 原生
+      // wx.pageScrollTo({
+      //   scrollTop: 0
+      // })
+      // 这里使用mpvue中的方法
+      mpvue.pageScrollTo({
+        scrollTop: 0
+      })
+    },
     floorData () {
       // let res = await request('home/floordata')
       this.floorList = resData.floorList
@@ -143,5 +164,21 @@ export default {
 .floor-content .right img{
   width: 232rpx;
   height: 188rpx;
+}
+.toTop{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.toTop p {
+  font-size: 16rpx;
 }
 </style>
