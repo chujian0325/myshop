@@ -19,6 +19,22 @@
         <div>{{ item.name }}</div>
       </div>
     </div>
+    <!-- 商品列表 -->
+    <div class="floor" v-for="(item,index) in floorList" :key="index">
+      <div class="floor-title">
+        {{ item.floor_title.name }}
+      </div>
+      <div class="floor-content" >
+        <div class="left">
+          <img :src="item.product_list[0].image_src" alt="" mode="aspectFill">
+        </div>
+        <div class="right">
+          <div v-for="(item, i) in item.product_list" :key="i">
+            <img v-if="i>0"  :src="item.image_src" alt="" mode="aspectFill">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -28,14 +44,20 @@ export default {
   data () {
     return {
       imgList: [],
+      floorList: [],
       menuList: []
     }
   },
   mounted () {
     this.swiperData()
     this.menuData()
+    this.floorData()
   },
   methods: {
+    floorData () {
+      // let res = await request('home/floordata')
+      this.floorList = resData.floorList
+    },
     swiperData () {
       // 请求后台接口，获取轮播数据
       let that = this
@@ -94,5 +116,32 @@ export default {
 .menu .menu-item img {
   width: 128rpx;
   height: 140rpx;
+}
+.floor {
+  margin-top: 20rpx;
+}
+.floor-title {
+  width: 100%;
+  padding-left: 20rpx;
+}
+.floor-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+.floor-content .left img{
+  width: 232rpx;
+  height: 385rpx;
+}
+.floor-content .right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap ;
+  margin-left: 14rpx;
+}
+.floor-content .right img{
+  width: 232rpx;
+  height: 188rpx;
 }
 </style>
