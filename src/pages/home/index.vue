@@ -64,6 +64,13 @@ export default {
     // 如果滚动到指定位置就控制显示和隐藏
     this.isShow = event.scrollTop > 50
   },
+  onPullDownRefresh () {
+    console.log(123)
+    // 下拉刷新，重新加载页面的数据
+    this.swiperData()
+    this.menuData()
+    this.floorData()
+  },
   methods: {
     goToTop () {
       // 原生
